@@ -20,6 +20,10 @@ function TodoController() {
         });
         this.newTodo = '';
     };
+
+    this.removeTodo = function(item, index) {
+        this.list.splice(index, 1);
+    }
     
 }
 

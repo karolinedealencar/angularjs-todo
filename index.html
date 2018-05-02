@@ -22,6 +22,9 @@
           <p>
             {{ item.title }}
           </p>
+          <a ng-click="todo.removeTodo(item, $index);">
+            &#215;
+          </a>
         </li>
       </ul>
 
