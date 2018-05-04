@@ -37,6 +37,11 @@ function TodoController(TodoService) {
     };
 
     ctrl.updateTodo = function(item, index) {
+        if(!item.title) {
+            TodoService 
+                ctrl.removeTodo(item, index);
+                return;
+        }
         TodoService
             .update(item);
     }
