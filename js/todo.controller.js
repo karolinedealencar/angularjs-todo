@@ -21,6 +21,11 @@ function TodoController(TodoService) {
     };
 
     ctrl.removeTodo = function(item, index) {
+        TodoService 
+            .remove(item)
+            .then(function(response) {
+                ctrl.list.splice(index, 1);
+            });
         ctrl.list.splice(index, 1);
     };
 
