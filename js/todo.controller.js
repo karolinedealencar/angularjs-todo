@@ -24,6 +24,11 @@ function TodoController(TodoService) {
         ctrl.list.splice(index, 1);
     };
 
+    ctrl.updateTodo = function(item, index) {
+        TodoService
+            .update(item);
+    }
+
     ctrl.getRemaining = function() {
         return ctrl.list.filter(function(item) {
             return !item.completed;
