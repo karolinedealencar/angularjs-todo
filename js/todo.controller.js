@@ -1,35 +1,36 @@
-function TodoController() {
+function TodoController(TodoService) {
+    var ctrl = this;
 
-    this.newTodo = '';
+    ctrl.newTodo = '';
+    ctrl.list = [];
 
-    this.list = [{
-        title: 'First todo item!',
-        completed: false
-    }, {
-        title: 'Second todo item!',
-        completed: false
-    }, {
-        title: 'Third todo item!',
-        completed: false
-    }];
+    function getTodos() {
+        TodoService
+            .retrieve()
+            .then(function(response) {
+                ctrl.list = response;
+            }); 
+    }
     
-    this.addTodo = function() {
-        this.list.unshift({
-            title: this.newTodo,
+    ctrl.addTodo = function() {
+        ctrl.list.unshift({
+            title: ctrl.newTodo,
             completed: false
         });
-        this.newTodo = '';
+        ctrl.newTodo = '';
     };
 
-    this.removeTodo = function(item, index) {
-        this.list.splice(index, 1);
+    ctrl.removeTodo = function(item, index) {
+        ctrl.list.splice(index, 1);
     };
 
-    this.getRemaining = function() {
-        return this.list.filter(function(item) {
+    ctrl.getRemaining = function() {
+        return ctrl.list.filter(function(item) {
             return !item.completed;
         });
     };
+
+    getTodos();
     
 }
 

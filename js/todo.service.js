@@ -7,7 +7,9 @@ function TodoService($http) {
     }
 
     function retrieve() {
-
+        return $http.get(API).then(function(response) {
+            return response.data.splice(0, 10);
+        });
     }
 
     function update() {
@@ -18,7 +20,6 @@ function TodoService($http) {
 
     }
     
-
     return {
         create: create,
         retrieve: retrieve,
