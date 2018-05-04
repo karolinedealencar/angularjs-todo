@@ -2,8 +2,10 @@ function TodoService($http) {
 
     var API = '//jsonplaceholder.typicode.com/todos/';
 
-    function create() {
-
+    function create(todo) {
+        return $http.post(API, todo).then(function(response) {
+            return response.data;
+        });
     }
 
     function retrieve() {

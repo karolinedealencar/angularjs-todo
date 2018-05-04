@@ -13,11 +13,18 @@ function TodoController(TodoService) {
     }
     
     ctrl.addTodo = function() {
-        ctrl.list.unshift({
-            title: ctrl.newTodo,
-            completed: false
-        });
-        ctrl.newTodo = '';
+        if(!ctrl.newTodo) {
+            return;
+        }
+        TodoService
+            .create({
+                title: ctrl.newTodo,
+                completed: false
+            })
+            .then(function(response) {
+                ctrl.list.unshift(response);
+                ctrl.newTodo = '';
+            });
     };
 
     ctrl.removeTodo = function(item, index) {
