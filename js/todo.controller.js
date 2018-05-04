@@ -47,6 +47,16 @@ function TodoController(TodoService) {
         });
     };
 
+    ctrl.toggleState = function(item) {
+        TodoService
+            .update(item)
+            .then(function() {
+
+            }, function() {
+                item.completed = !item.completed;
+            });
+    }
+
     getTodos();
     
 }
